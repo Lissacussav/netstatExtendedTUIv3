@@ -1,0 +1,30 @@
+name: .NET Build and Test 
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest #    или ubuntu-latest, если кроссплатформенная сборка
+
+    steps:
+    - uses: actions/checkout@v4 #  поддтяжка уже существующего метода (хз так было в гайдах)
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version:  4.8.x #моя версия дотнета
+
+    - name: Restore dependencies #Восстановит все проекты в папке
+      run: dotnet restore 
+      
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore #сборка
+
+    - name: Test
+      run: dotnet test --no-build --verbosity normal #тест
