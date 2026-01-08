@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36811.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "netstatExtendedTUIv3", "netstatExtendedTUIv3.csproj", "{2111181B-EC7E-43FD-8A43-85DD61B4C8D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2111181B-EC7E-43FD-8A43-85DD61B4C8D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2111181B-EC7E-43FD-8A43-85DD61B4C8D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2111181B-EC7E-43FD-8A43-85DD61B4C8D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2111181B-EC7E-43FD-8A43-85DD61B4C8D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {992E34FD-4E63-4A2B-BE1D-D1F11B8B159C}
+	EndGlobalSection
+EndGlobal
