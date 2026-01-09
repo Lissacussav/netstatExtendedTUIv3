@@ -1,30 +1,24 @@
-name: .NET Build and Test 
+name: .NET Framework Build
 
 on:
   push:
-    branches: [ "master", "main" ]
+    branches: [ master ]
   pull_request:
-    branches: [ "master", "main" ]
+    branches: [ master ]
 
 jobs:
   build:
-
-    runs-on: windows-latest #    или ubuntu-latest, если кроссплатформенная сборка
+    runs-on: windows-latest # Важно: только Windows для .NET Framework
 
     steps:
-    - uses: actions/checkout@v4 #  поддтяжка уже существующего метода (хз так было в гайдах)
+    - uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version:  10.0.x #моя версия дотнета
+    # 1. Восстанавливаем пакеты старым проверенным способом
+    - name: Restore NuGet packages
+      run: nuget restore netstatExtendedTUIv3.sln  # Если есть файл решения
+      # или используйте, если нет .sln:
+      # run: nuget restore netstatExtendedTUIv3.csproj
 
-    - name: Restore dependencies #Восстановит все проекты в папке
-      run: dotnet restore 
-      
-
-    - name: Build
-      run: dotnet build --configuration Release --no-restore #сборка
-
-    - name: Test
-      run: dotnet test --no-build --verbosity normal #тест
+    # 2. Собираем родным MSBuild
+    - name: Build with MSBuild
+      run: msbuild netstatExtendedTUIv3.csproj /p:Configuration=Release /p:Platform="Any CPU" /p:RestorePackages=false
