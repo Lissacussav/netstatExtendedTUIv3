@@ -8,17 +8,19 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest # Важно: только Windows для .NET Framework
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
 
-    # 1. Восстанавливаем пакеты старым проверенным способом
-    - name: Restore NuGet packages
-      run: nuget restore netstatExtendedTUIv3.sln  # Если есть файл решения
-      # или используйте, если нет .sln:
-      # run: nuget restore netstatExtendedTUIv3.csproj
+    # 1. Устанавливаем MSBuild (официальное действие от Microsoft)
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
 
-    # 2. Собираем родным MSBuild
-    - name: Build with MSBuild
-      run: msbuild netstatExtendedTUIv3.csproj /p:Configuration=Release /p:Platform="Any CPU" /p:RestorePackages=false
+    # 2. Восстанавливаем пакеты (важно: укажите правильный файл)
+    - name: Restore NuGet packages
+      run: nuget restore netstatExtendedTUIv3.csproj  # Используем .csproj, если нет .sln
+
+    # 3. Собираем проект
+    - name: Build project
+      run: msbuild netstatExtendedTUIv3.csproj /p:Configuration=Release /p:Platform="Any CPU" /verbosity:minimal
