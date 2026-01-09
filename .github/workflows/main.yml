@@ -23,4 +23,4 @@ jobs:
 
     # 3. Собираем проект
     - name: Build project
-      run: msbuild netstatExtendedTUIv3.csproj /p:Configuration=Release /p:Platform="Any CPU" /verbosity:minimal
+      run: msbuild netstatExtendedTUIv3.csproj /p:Configuration=Release /p:Platform="Any CPU" /p:OutputPath=bin\Release /verbosity:minimal
